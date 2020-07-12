@@ -1,0 +1,7 @@
+<h2>Sign Up</h2>
+<form method='post' action=<%= users_url %>>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <input type='text' name='[user][username]' id='username'>
+  <input type='text' name='[user][password]' id='password'>
+  <button>Create User</button>
+</form>
