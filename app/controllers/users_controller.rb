@@ -5,9 +5,8 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-
     if user.save
-      login(user_params[:username], user_params[:password])
+      login(user)
       redirect_to user_url(user)
     else
       flash.now[:errors] = 'Invalid Params'
@@ -16,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     render :show
   end
 

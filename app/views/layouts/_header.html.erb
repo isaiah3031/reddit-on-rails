@@ -1,0 +1,7 @@
+<% if logged_in? %>
+  <h2>Welcome <%= current_user.username%></h2>
+  <%= link_to 'Log Out', session_url(current_user.id), method: :delete %>
+<% else %>
+  <a id='login' href='<%= new_session_url %>'>Log In</a>
+  <a id='signup' href='<%= new_user_url %>'>Sign Up</a>
+<% end %>
