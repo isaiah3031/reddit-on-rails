@@ -26,10 +26,10 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   context 'logging out' do
-    it 'resets the session token' do
+    it 'redirects to the Sub Index page' do
       FactoryBot.create(:user)
       delete :destroy, params: { id: User.last.id }
-      expect(response).to have_http_status(204)
+      expect(response).to redirect_to(subs_url)
     end
   end
 end

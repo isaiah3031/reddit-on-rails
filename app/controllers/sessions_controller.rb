@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
     @user = User.find(params[:id])
     if @user
       logout(@user)
+      redirect_to subs_url
     end
   end
 

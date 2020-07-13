@@ -1,4 +1,5 @@
-<% Subs.all.each do |sub| %>
+<h2>All Subs</h2>
+<% Sub.all.each do |sub| %>
   <%= User.find(sub.moderator_id) %>
   <%= sub.title %>
   <%= sub.description %>
