@@ -1,4 +1,7 @@
 require 'rails_helper'
+require './test/test_helpers/creation_helpers.rb'
+
+include CreationHelpers
 
 feature 'Displays subs' do
   scenario 'when logged out' do
@@ -8,20 +11,27 @@ feature 'Displays subs' do
 end
 
 feature 'Creating subs' do
-  scenario 'Allows users to create subs' do
+  before(:each) do
     create_user(Time.now.to_s)
+  end
+  scenario 'Allows users to create subs' do
     visit subs_url
     expect(page).to have_link('', href: new_sub_url) 
     expect(page).to have_text('Create Sub')
   end
 
   scenario 'Users must log in before creating a sub' do
-    create_user(Time.now.to_s)
     visit subs_url
     expect(page).to have_link('', href: new_sub_url) 
     expect(page).to have_text('Create Sub')
     logout
     expect(page).not_to have_link('', href: new_sub_url)
     expect(page).not_to have_text('Create Sub')
+  end
+
+  scenario 'Displays the newly created sub' do
+    new_sub_title = Faker::Lorem.words
+    create_sub(new_sub_url)
+    expect(page).to have_text(new_sub_title)
   end
 end
