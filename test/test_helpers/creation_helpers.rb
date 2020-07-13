@@ -21,4 +21,11 @@ module CreationHelpers
     fill_in 'content', with: Faker::Lorem.sentence(word_count: 20)
     click_on 'Create Post'
   end
+
+  def edit_last_post(content)
+    visit 'post/' + Post.last.id.to_s + '/edit'
+    fill_in 'title', with: Faker::Lorem.sentence(word_count: 3)
+    fill_in 'content', with: content
+    click_on 'Edit Post'
+  end
 end
