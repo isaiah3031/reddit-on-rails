@@ -12,5 +12,6 @@ feature 'Creating subs' do
     create_user(Time.now.to_s)
     visit subs_url
     expect(page).to have_link('', href: new_sub_url) 
+    expect(page).to have_text('Create Sub')
   end
 end
