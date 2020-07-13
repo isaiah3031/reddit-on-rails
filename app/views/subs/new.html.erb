@@ -1,0 +1,8 @@
+<form method='post' action='<%= subs_url %>'>
+  <input type='hidden' 
+    name='authenticity_token' 
+    value=<%= form_authenticity_token %>>
+  <input name=[sub][title] id='title'>
+  <input name=[sub][description] id='description'>
+  <button>Create</button>
+</form>

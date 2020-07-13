@@ -12,13 +12,14 @@ class SubsController < ApplicationController
     sub = Sub.new(sub_params)
     sub.moderator_id = current_user.id
     if sub.save
-      # redirect_to sub_url(sub)
+      redirect_to sub_url(sub)
     else
       # render :new
     end
   end
 
   def show
+    @sub = Sub.find(params[:id])
     render :show
   end
 

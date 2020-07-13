@@ -30,8 +30,8 @@ feature 'Creating subs' do
   end
 
   scenario 'Displays the newly created sub' do
-    new_sub_title = Faker::Lorem.words
-    create_sub(new_sub_url)
+    new_sub_title = Faker::Lorem.sentence(word_count: 2)
+    create_sub(new_sub_title)
     expect(page).to have_text(new_sub_title)
   end
 end
