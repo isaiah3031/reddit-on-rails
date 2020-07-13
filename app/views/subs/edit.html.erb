@@ -1,10 +1,9 @@
-<form method='post' action='<%= edit_sub_url %>'>
+<form method='post' action='<%= sub_url(@sub.id) %>'>
   <input type="hidden" name="_method" value="patch">
-  <input
-  type='hidden' 
-  name='authenticity_token' 
-  value='<%=form_authenticity_token%>'>
-    <input type='text' id='title' name=[sub][title] value='<%= @sub.title %>'>
-    <input type='text' id='description' name=[sub][description] value='<%= @sub.description %>'>
-    <button id='edit'>Edit<button>
-      </form>
+  <input type='hidden' 
+    name='authenticity_token' 
+    value='<%=form_authenticity_token%>'>
+  <input type='text' id='title' name=[sub][title] value='<%= @sub.title %>'>
+  <input type='text' id='description' name=[sub][description] value='<%= @sub.description %>'>
+  <button id='edit'>Edit<button>
+    </form>

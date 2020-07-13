@@ -43,9 +43,10 @@ feature 'Editing subs' do
   end
 
   scenario 'Must be a moderator to update a sub' do
-    click_on('Edit Sub')
-    expect(page).to have_field('title')
-    expect(page).to have_field('description')
-    expect(page).to have_button('edit')
+    new_desc = Faker::Lorem.sentence(word_count: 8, supplemental: true)
+    edit_last_sub(new_desc)
+    expect(page).to have_text(Sub.last.title)
+    expect(page).to have_text(new_desc)
   end
 end
+

@@ -29,6 +29,13 @@ class SubsController < ApplicationController
     render :edit
   end
 
+  def update
+    sub = Sub.find(params[:id])
+    if sub.update_attributes(sub_params)
+    else
+    end
+  end
+
   private
 
   def sub_params
