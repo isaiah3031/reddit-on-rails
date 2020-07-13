@@ -37,8 +37,15 @@ feature 'Creating subs' do
 end
 
 feature 'Editing subs' do
-  scenario 'Must be a moderator to update a sub' do
+  before(:each) do
+    create_user(Time.now.to_s)
     create_sub
-    expect(page).to have_link('', href: edit_sub_url)
+  end
+
+  scenario 'Must be a moderator to update a sub' do
+    click_on('Edit Sub')
+    expect(page).to have_field('title')
+    expect(page).to have_field('description')
+    expect(page).to have_button('edit')
   end
 end
