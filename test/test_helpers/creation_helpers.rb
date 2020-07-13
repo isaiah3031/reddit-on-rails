@@ -13,4 +13,8 @@ module CreationHelpers
     fill_in 'description', with: description
     click_on 'Edit'
   end
+
+  def create_post
+    
+  end
 end
