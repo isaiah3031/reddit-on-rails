@@ -35,3 +35,10 @@ feature 'Creating subs' do
     expect(page).to have_text(new_sub_title)
   end
 end
+
+feature 'Editing subs' do
+  scenario 'Must be a moderator to update a sub' do
+    create_sub
+    expect(page).to have_link('', href: edit_sub_url)
+  end
+end
