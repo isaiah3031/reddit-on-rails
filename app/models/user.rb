@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :posts,
     foreign_key: :author_id
+    
   has_many :subs,
     class_name: :Sub,
     foreign_key: :moderator_id
