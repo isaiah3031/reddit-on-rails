@@ -42,11 +42,17 @@ feature 'Editing subs' do
     create_sub
   end
 
-  scenario 'Must be a moderator to update a sub' do
+  scenario 'Moderators can update their own subs' do
     new_desc = Faker::Lorem.sentence(word_count: 8, supplemental: true)
     edit_last_sub(new_desc)
     expect(page).to have_text(Sub.last.title)
     expect(page).to have_text(new_desc)
   end
-end
 
+  scenario 'Unauthorized users are redirected to the index page' do
+    logout
+    link = '/subs/' + Sub.last.id.to_s + '/edit'
+    visit link
+    expect(page).to have_text('All Subs')
+  end
+end

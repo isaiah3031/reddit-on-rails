@@ -33,7 +33,6 @@ class SubsController < ApplicationController
     sub = Sub.find(params[:id])
     if sub.update_attributes(sub_params)
       redirect_to sub_url(sub)
-    else
     end
   end
 
@@ -48,7 +47,7 @@ class SubsController < ApplicationController
     if logged_in? && sub.moderator_id == current_user.id
       true
     else
-      # redirect_to subs_url
+      redirect_to subs_url
     end
   end
 end
