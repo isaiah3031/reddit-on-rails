@@ -1,7 +1,5 @@
 <h2>All Subs</h2>
-<% if logged_in? %>
-  <a href='<%= new_sub_url %>'>Create Sub</a>
-<% end %>
+<a href='<%= new_sub_url %>'>Create Sub</a>
 <% Sub.all.each do |sub| %>
   <%= User.find(sub.moderator_id) %>
   <%= sub.title %>
