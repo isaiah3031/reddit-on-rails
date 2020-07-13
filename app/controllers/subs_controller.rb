@@ -32,6 +32,7 @@ class SubsController < ApplicationController
   def update
     sub = Sub.find(params[:id])
     if sub.update_attributes(sub_params)
+      redirect_to sub_url(sub)
     else
     end
   end
