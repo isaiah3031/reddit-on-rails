@@ -3,7 +3,9 @@
   <input type='hidden' 
     name='authenticity_token' 
     value=<%= form_authenticity_token%>>
+  <label for='username'>Username:</label>
   <input type='text' name='[user][username]' id='username'>
+  <label for='password'>Password:</label>
   <input type='text' name='[user][password]' id='password'>
   <button>Create User</button>
 </form>

@@ -1,0 +1,5 @@
+<% Subs.all.each do |sub| %>
+  <%= User.find(sub.moderator_id) %>
+  <%= sub.title %>
+  <%= sub.description %>
+<% end %>
