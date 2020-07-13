@@ -1,0 +1,7 @@
+<form method='post' action='<%= sub_posts_url %>'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token%>'>
+  <input id='title' type='text' name=[post][title]>
+  <input id='url' type='text' name=[post][url]>
+  <input id='content' type='text' name=[post][content]>
+  <button>Create Post</button>
+</form>
