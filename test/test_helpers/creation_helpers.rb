@@ -14,9 +14,10 @@ module CreationHelpers
     click_on 'Edit'
   end
 
-  def create_post(sub)
+  def create_post(sub, title = nil)
+    title = Faker::Lorem.sentence(word_count: 3) if title.nil?
     visit new_sub_post_url(sub.id)
-    fill_in 'title', with: Faker::Lorem.sentence(word_count: 3)
+    fill_in 'title', with: title
     fill_in 'content', with: Faker::Lorem.sentence(word_count: 20)
     click_on 'Create Post'
   end

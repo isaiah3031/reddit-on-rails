@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     post.sub_id = params[:sub_id]
     
     if post.save
-      # redirect_to post_url(post)
+      redirect_to post_url(post)
     else
       debugger
     end
