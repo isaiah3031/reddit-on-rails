@@ -23,7 +23,7 @@ module CreationHelpers
   end
 
   def edit_last_post(content)
-    visit 'post/' + Post.last.id.to_s + '/edit'
+    visit '/posts/' + Post.last.id.to_s + '/edit'
     fill_in 'title', with: Faker::Lorem.sentence(word_count: 3)
     fill_in 'content', with: content
     click_on 'Edit Post'

@@ -43,6 +43,14 @@ feature 'Posts' do
       edit_last_post(content)
       expect(page).to have_text(content)
     end
+
+    scenario 'Users can not edit the posts of others' do
+      create_post(Sub.last)
+      logout
+      create_user(Time.now.to_s)
+      visit '/posts/' + Post.last.id.to_s + '/edit'
+      expect(page).not_to have_button('Edit Post')
+      expect(page).to have_text('All Subs')
+    end
   end
 end
-
