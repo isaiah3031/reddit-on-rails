@@ -1,0 +1,2 @@
+class PostsSub < ApplicationRecord
+end
