@@ -1,8 +1,10 @@
 class Post < ApplicationRecord
-  validates :title, :sub_id, :author_id, presence: true
+  validates :title, :author_id, presence: true
 
-  belongs_to :sub
+  has_many :posts_subs
+  has_many :subs, :through => :posts_subs
   
   belongs_to :author,
     class_name: :User
 end
+

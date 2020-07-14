@@ -1,3 +1,0 @@
-class SubPosts < ApplicationRecord
-  
-end

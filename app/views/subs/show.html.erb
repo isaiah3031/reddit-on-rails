@@ -1,8 +1,15 @@
 <a href='<%= edit_sub_url %>'>Edit Sub</a>
-<%= @sub.title %>
+<h2><%= @sub.title %></h2>
 <%= @sub.description %>
+<br>
 <% posts = @sub.posts.all %>
 <% posts.each do |post| %>
-  <%= post.title %>
+  <h3><%= post.title %></h3>
+  <br>
   <%= post.content[0..10] %>
+  <p>Associated Subs</p>
+  <%debugger%>
+  <% post.subs.each do |sub| %>
+    <%= sub.title + " "%>
+  <% end %>
 <% end %>

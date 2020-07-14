@@ -15,7 +15,7 @@ feature 'Posts' do
   feature 'Creating posts' do
     scenario 'Users can create a post' do
       create_post(Sub.last)
-      expect(Post.last.sub).to eql(Sub.last)
+      expect(Post.last.subs).to eql(Sub.last)
     end
 
     scenario 'Displays post after creation' do

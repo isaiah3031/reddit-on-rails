@@ -3,7 +3,8 @@
   <a href='<%= new_sub_url %>'>Create Sub</a>
 <% end %>
 <% Sub.all.each do |sub| %>
-  <%= User.find(sub.moderator_id) %>
+  <% User.find(sub.moderator_id) %>
   <%= sub.title %>
   <%= sub.description %>
+  <br>
 <% end %>
