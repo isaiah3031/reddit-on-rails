@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :logged_in?, except: %i[show]
+  before_action :ensure_login, except: %i[show]
   before_action :ensure_author, only: %i[edit update]
   def new
     render :new
@@ -12,7 +12,8 @@ class PostsController < ApplicationController
     if post.save
       redirect_to post_url(post)
     else
-      debugger
+      flash[:errors] = 'Invalid post. Please try again.'
+      redirect_to new_sub_post_url(post.sub_ids.first)
     end
   end
 
@@ -37,13 +38,14 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 
   def ensure_author
     post = Post.find(params[:id])
     if !logged_in? || post.author_id != current_user.id
-      redirect_to subs_url 
+      flash[:errors] = 'You aren\'t authorized to do this.'
+      redirect_to subs_url
     end
   end
 end

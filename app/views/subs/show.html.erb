@@ -4,12 +4,9 @@
 <br>
 <% posts = @sub.posts.all %>
 <% posts.each do |post| %>
-  <h3><%= post.title %></h3>
+  <a href='<%= post_url(post) %>'>
+    <h3><%= post.title %></h3>
+  </a>
   <br>
   <%= post.content[0..10] %>
-  <p>Associated Subs</p>
-  <%debugger%>
-  <% post.subs.each do |sub| %>
-    <%= sub.title + " "%>
-  <% end %>
 <% end %>

@@ -5,5 +5,4 @@ class Sub < ApplicationRecord
 
   belongs_to :moderator,
     class_name: :User
-
 end

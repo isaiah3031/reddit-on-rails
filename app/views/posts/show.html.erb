@@ -2,3 +2,8 @@
 <%= @post.author_id %>
 <%= @post.url %>
 <%= @post.content %>
+<a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
+<% @post.comments.all.each do |comment| %>
+  <% debugger %>
+  <%= comment.content %>
+<% end %>

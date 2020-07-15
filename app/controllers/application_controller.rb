@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_login
-    logged_in? ? (true) : (redirect_to new_session_url)
+    unless logged_in?
+      flash[:errors] = 'Must log in.'
+      redirect_to new_session_url
+    end
   end
 end

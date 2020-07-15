@@ -9,7 +9,6 @@ RSpec.describe PostsSub, type: :model do
   FactoryBot.create(:user)
   FactoryBot.create(:sub, moderator_id: User.last.id)
   post = FactoryBot.build(:post, author_id: User.last.id, sub_ids: Sub.last.id)
-  relation = PostsSub.new(post: post)
   post.save
   it { should validate_uniqueness_of(:sub_id).scoped_to(:post_id) }
 end

@@ -1,0 +1,5 @@
+<form method='post' action='<%= comments_url %>'>
+  <textarea name='[comment][content]' id='comment'></textarea>
+  <input type='hidden' name=[comment][post_id] value='<%= @post_id %>'>
+  <button>Comment</button>
+</form>

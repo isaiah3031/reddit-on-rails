@@ -7,5 +7,17 @@
   <input type='text' id='title' name=[post][title] value=<%= @post.title %>>
   <input type='text' id='url' name=[post][url] value=<%= @post.url %>>
   <input type='text' id='content' name=[post][content] value=<%= @post.content %>>
-  <button>Edit Post</button>
+  <h2>Select Cross Post Associations</h2>
+  <% Sub.all.each do |sub| %>
+    <label><%= sub.title %></label>
+    <input 
+    id='subID'
+    name='[post][sub_ids][]' 
+    type='checkbox' 
+    value='<%= sub.id %>'
+    <%= 'checked' if @post.sub_ids.include?(sub.id) %>
+    />
+<br>
+<% end %>
+<button>Edit Post</button>
 </form>

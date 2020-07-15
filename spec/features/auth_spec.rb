@@ -53,4 +53,3 @@ feature 'logging out' do
     expect(page).to have_link('', href: session_url(User.last.id))
   end
 end
-

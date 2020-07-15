@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   resources :subs, only: %i[index new create edit update show] do
     resources :posts, only: %i[new create]
   end
-  resources :posts, only: %i[show edit update]
+  resources :posts, only: %i[show edit update] do
+    resources :comments, only: %i[new]
+  end
+  resources :comments, only: %i[create]
 end
