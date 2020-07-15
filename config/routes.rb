@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :posts, only: %i[show edit update] do
     resources :comments, only: %i[new]
   end
-  resources :comments, only: %i[create]
+  resources :comments, only: %i[create show]
 end

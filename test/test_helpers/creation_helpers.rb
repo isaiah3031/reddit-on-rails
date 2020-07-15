@@ -29,4 +29,11 @@ module CreationHelpers
     fill_in 'content', with: content
     click_on 'Edit Post'
   end
+
+  def create_comment(comment = nil)
+    comment = Faker::Lorem.sentence(word_count: 15) if comment.nil?
+    visit new_post_comment_url(Post.last)
+    fill_in 'comment', with: comment
+    click_on 'Comment'
+  end
 end

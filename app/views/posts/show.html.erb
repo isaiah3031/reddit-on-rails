@@ -3,7 +3,8 @@
 <%= @post.url %>
 <%= @post.content %>
 <a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
-<% @post.comments.all.each do |comment| %>
-  <% debugger %>
+<% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+  <a href='<%= comments_url(comment) %>'>Expand</a>
   <%= comment.content %>
+  <a href='<%= new_post_comment_url(comment) %>'>Comment</a>
 <% end %>

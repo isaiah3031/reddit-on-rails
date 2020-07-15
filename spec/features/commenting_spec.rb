@@ -12,15 +12,20 @@ feature 'Comments' do
     create_post(Sub.last)
   end
 
-  scenario 'Link to comment creation from post pages' do
+  scenario 'Post display comments belonging to it' do
     expect(page).to have_link(href: new_post_comment_url(Post.last))
   end
 
   scenario 'Users can leave comments' do
-    comment = Faker::Lorem.sentence(word_count: 15)
-    click_on 'Leave a Comment'
-    fill_in 'comment', with: comment
-    click_on 'Comment'
+    comment = Time.now.to_s
+    create_comment(comment)
     expect(page).to have_text(comment)
   end
+
+  scenario 'Parent comments link to their own show page' do
+    create_comment
+    visit post_url(Post.last)
+    expect(page).to have_link('Expand', href: comments_url(Comment.last))
+  end
 end
+
