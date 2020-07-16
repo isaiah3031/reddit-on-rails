@@ -51,7 +51,7 @@ feature 'Comments' do
       expect(page).to have_link(href: new_post_comment_url(Post.last))
     end
 
-    scenario 'Comment show pages render their child comment' do
+    scenario 'Comment show pages show child comments' do
       create_comment
       parent_comment = Comment.last
       click_on 'Expand'

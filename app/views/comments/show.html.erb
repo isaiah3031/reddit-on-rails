@@ -16,7 +16,7 @@
   <input 
         type='hidden' 
         name=[comment][parent_comment_id] 
-        value='<%= @comment.latest_child %>'>
+        value='<%= @comment.latest_child.id %>'>
   <textarea id='content' name=[comment][content]></textarea>
   <button>Create</button>
 </form>
