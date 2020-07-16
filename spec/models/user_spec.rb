@@ -7,7 +7,8 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:subs) }
   it { should have_many(:posts) }
-
+  it { should have_many(:comments) }
+  
   context 'when signing up' do
     it 'shouldn\'t save the password' do
       user = FactoryBot.create(:user)

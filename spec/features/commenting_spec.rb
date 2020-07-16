@@ -50,7 +50,7 @@ feature 'Comments' do
       create_comment
       expect(page).to have_link(href: new_post_comment_url(Post.last))
     end
-    
+
     scenario 'Comment show pages render their child comment' do
       create_comment
       parent_comment = Comment.last
@@ -58,6 +58,7 @@ feature 'Comments' do
       fill_in :content, with: "child"
       click_button 'Create'
       child_comment = Comment.last
+      visit comment_url(parent_comment)
       expect(page).to have_text('child')
       expect(child_comment.parent_comment).to eql(parent_comment)
     end

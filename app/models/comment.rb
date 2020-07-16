@@ -8,4 +8,14 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :author,
     class_name: :User
+
+  def latest_child
+    comments, parent = Comment.where(post_id: self.post_id), self
+    loop do
+      child = comments.find_by(parent_comment_id: parent.id)
+      break if child.nil?
+      parent = child
+    end
+    parent
+  end
 end

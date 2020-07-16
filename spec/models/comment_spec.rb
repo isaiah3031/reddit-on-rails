@@ -7,4 +7,14 @@ RSpec.describe Comment, type: :model do
   it { should belong_to(:parent_comment).optional }
   it { should belong_to(:author) }
   it { should belong_to(:post) }
+
+  describe 'latest_child method' do
+    it 'should return the latest child of a comment' do
+      Rails.application.load_seed
+      user = User.find_by(username: 'big_moderator')
+      first_comment = user.comments.first
+      latest_child = Comment.find_by(content: 'child9')
+      expect(first_comment.latest_child).to be(latest_child)
+    end
+  end
 end

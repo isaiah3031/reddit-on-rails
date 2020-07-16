@@ -13,6 +13,10 @@
         type='hidden' 
         name=[comment][post_id] 
         value='<%= @comment.post_id %>'>
+  <input 
+        type='hidden' 
+        name=[comment][parent_comment_id] 
+        value='<%= @comment.latest_child %>'>
   <textarea id='content' name=[comment][content]></textarea>
   <button>Create</button>
 </form>
