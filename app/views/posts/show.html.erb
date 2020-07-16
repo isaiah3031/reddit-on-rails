@@ -5,11 +5,16 @@
 <%= @post.content %>
 <br>
 <a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
-<% @all_comments.each do |comment| %>
-  <% next unless comment.parent_comment_id == nil %>
-  <ul>
+<ul>
+  <% @all_comments.each do |comment| %>
+    <% next unless comment.parent_comment_id == nil %>
     <a href='<%= comment_url(comment) %>'>Expand</a>
     <%= comment.content %>
-    <li><%= render partial: "comment", locals: {comment: @comment} %></li>
-  </ul>
-<% end %>
+    <li>
+      <%= 
+        render partial: "comments/comment", 
+        :object => comment
+      %>
+    </li>
+  <% end %>
+</ul>

@@ -1,8 +1,9 @@
 <h2><%= @comment.post.title %></h2>
 <br>
 <%= @comment.post.content %>
+<% debugger %>
 <ul>
-  <%= render partial: "comment", locals: {comment: @comment} %>
+  <%= render partial: "comments/comment", object: {@comment} %>
 </ul>
 <form method='post' action='<%= comments_url %>'>
   <input 
