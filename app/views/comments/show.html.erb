@@ -2,7 +2,7 @@
 <br>
 <%= @comment.post.content %>
 <ul>
-  <%= render partial: "child_comment", locals: {comment: @comment} %>
+  <%= render partial: "comment", locals: {comment: @comment} %>
 </ul>
 <form method='post' action='<%= comments_url %>'>
   <input 

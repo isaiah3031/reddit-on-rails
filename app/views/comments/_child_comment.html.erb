@@ -1,9 +1,0 @@
-<li>
-  <%= comment.content %>
-  <br>
-  <%= comment.author.username %>
-</li>
-<% child = Comment.find_by(parent_comment_id: comment.id) %>
-<% if child %>
-  <%= render partial: "child_comment", locals: {comment: child} %>
-<% end %>

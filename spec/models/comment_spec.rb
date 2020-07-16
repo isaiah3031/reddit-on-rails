@@ -7,6 +7,7 @@ RSpec.describe Comment, type: :model do
   it { should belong_to(:parent_comment).optional }
   it { should belong_to(:author) }
   it { should belong_to(:post) }
+  it { should have_many(:child_comments) }
 
   describe 'latest_child method' do
     it 'should return the latest child of a comment' do
