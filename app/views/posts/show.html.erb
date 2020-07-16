@@ -1,10 +1,13 @@
 <%= @post.title %>
 <%= @post.author_id %>
 <%= @post.url %>
+<br>
 <%= @post.content %>
+<br>
 <a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
 <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
-  <a href='<%= comments_url(comment) %>'>Expand</a>
-  <%= comment.content %>
-  <a href='<%= new_post_comment_url(comment) %>'>Comment</a>
+  <ul>
+    <a href='<%= comment_url(comment) %>'>Expand</a>
+    <%= comment.content %>
+  </ul>
 <% end %>

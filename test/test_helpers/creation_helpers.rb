@@ -32,8 +32,16 @@ module CreationHelpers
 
   def create_comment(comment = nil)
     comment = Faker::Lorem.sentence(word_count: 15) if comment.nil?
+    comment = nil if comment == 'override'
     visit new_post_comment_url(Post.last)
     fill_in 'comment', with: comment
     click_on 'Comment'
+  end
+
+  def create_child_comment
+    debugger
+    all('.comment').last
+    fill_in :content, with: 'child' + count
+    click_on ('Comment')
   end
 end

@@ -10,7 +10,8 @@ class CommentsController < ApplicationController
     if comment.save
       redirect_to post_url(comment.post)
     else
-      debugger
+      flash.now[:error] = 'Must contain a comment.'
+      render :new
     end
   end
 
@@ -22,6 +23,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id)
+    params.require(:comment).permit(:content, :post_id, :parent_id)
   end
 end

@@ -1,2 +1,18 @@
-<% Comment.where(parent_comment_id: nil).each do |comment| %>
-<% end %>
+<h2><%= @comment.post.title %></h2>
+<br>
+<%= @comment.post.content %>
+<ul>
+  <%= render partial: "child_comment", locals: {comment: @comment} %>
+</ul>
+<form method='post' action='<%= comments_url %>'>
+  <input 
+        type='hidden'
+        name='authenticity_token'
+        value='<%= form_authenticity_token %>'>
+  <input 
+        type='hidden' 
+        name=[comment][post_id] 
+        value='<%= @comment.post_id %>'>
+  <textarea id='content' name=[comment][content]></textarea>
+  <button>Create</button>
+</form>
