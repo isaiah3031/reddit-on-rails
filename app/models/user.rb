@@ -6,6 +6,9 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
   before_commit :ensure_session_token
 
+  has_many :comments,
+    foreign_key: :author_id
+    
   has_many :posts,
     foreign_key: :author_id
     

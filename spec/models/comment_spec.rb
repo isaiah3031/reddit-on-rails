@@ -14,7 +14,7 @@ RSpec.describe Comment, type: :model do
       user = User.find_by(username: 'big_moderator')
       first_comment = user.comments.first
       latest_child = Comment.find_by(content: 'child9')
-      expect(first_comment.latest_child).to be(latest_child)
+      expect(first_comment.latest_child).to eql(latest_child)
     end
   end
 end
