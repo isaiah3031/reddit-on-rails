@@ -18,8 +18,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
-    @comment_chain = @comment.child_comment.includes(:author)
-    
+    @all_comments = Comment.includes(:author).where(post_id: @comment.post_id)
     render :show
   end
 
@@ -29,10 +28,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content, :post_id, :parent_comment_id)
   end
 
-  def child_comments(comment)
-    comment_chain = comment
-    loop do
-      comment.child_comment
-    end
+  def comment_chain(comment)
+  
   end
 end

@@ -71,7 +71,6 @@ feature 'Comments' do
       click_on 'Expand'
       fill_in :content, with: 'child2'
       click_button 'Create'
-      child_comment2 = Comment.last
       visit comment_url(@parent_comment)
       expect(page).to have_text('child')
       expect(page).to have_text('child2')

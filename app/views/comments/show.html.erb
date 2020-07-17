@@ -1,9 +1,20 @@
 <ul>
-  <%= render partial: "comments/comment", object: @comment %>
-  <% @comment_chain.each do |child_comment| %>
-    <li>
-      <%= render partial: "comments/comment", locals: {comment: child_comment} %>
-    </li>
+  <li>
+    <%= render partial: "comments/comment", object: @comment %>
+  </li>
+  <% parent = @comment%>
+  <% loop do %>
+    <% child = @all_comments.find do |comment| %>
+      <% comment.parent_comment_id == parent.id %>
+    <% end %>
+    <% if child %>
+      <li>
+        <%= render partial: "comments/comment", locals: {comment: child } %>
+      </li>
+      <% parent = child %>
+    <% else %>
+      <% break%>
+    <% end %>
   <% end %>
 </ul>
 <form method='post' action='<%= comments_url %>'>
