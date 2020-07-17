@@ -18,10 +18,6 @@ feature 'Comments' do
       expect(page).to have_text(Post.last.comments.last.content)
     end
 
-    scenario 'displays one child comment' do
-      
-    end
-
     scenario 'Posts have a link to create parent comments' do
       expect(page).to have_link(href: new_post_comment_url(Post.last))
     end
@@ -65,9 +61,20 @@ feature 'Comments' do
       @child_comment = Comment.last
     end
 
+    scenario 'Post show page displays one child comment' do
+      visit post_url(@parent_comment.post_id)
+      expect(page).to have_text(@child_comment.content)
+      expect(@child_comment.parent_comment).to eql(@parent_comment)
+    end
+
     scenario 'Comment show pages show child comments' do
+      click_on 'Expand'
+      fill_in :content, with: 'child2'
+      click_button 'Create'
+      child_comment2 = Comment.last
       visit comment_url(@parent_comment)
       expect(page).to have_text('child')
+      expect(page).to have_text('child2')
     end
 
     scenario 'Users can create child comments' do

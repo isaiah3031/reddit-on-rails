@@ -15,5 +15,14 @@
         object: comment
       %>
     </li>
+    <% @all_comments.each do |child_comment| %>
+      <% next unless comment == child_comment.parent_comment%>
+      <li>
+        <%= 
+          render partial: "comments/comment", 
+          locals: {comment: child_comment}
+        %>
+      </li>
+    <% end %>
   <% end %>
 </ul>

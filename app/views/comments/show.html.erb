@@ -1,8 +1,10 @@
-<h2><%= @comment.post.title %></h2>
-<br>
-<%= @comment.post.content %>
 <ul>
   <%= render partial: "comments/comment", object: @comment %>
+  <% @comment_chain.each do |child_comment| %>
+    <li>
+      <%= render partial: "comments/comment", locals: {comment: child_comment} %>
+    </li>
+  <% end %>
 </ul>
 <form method='post' action='<%= comments_url %>'>
   <input 
