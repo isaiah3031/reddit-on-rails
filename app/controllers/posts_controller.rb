@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @all_comments = @post.comments.includes(:author)
+    @all_comments = CommentDecorator.decorate_collection(@all_comments)
     render :show
   end
 

@@ -7,13 +7,12 @@
 <a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
 <ul>
   <% @all_comments.each do |comment| %>
-    <% next unless comment.parent_comment_id == nil %>
-    <a href='<%= comment_url(comment) %>'>Expand</a>
-    <%= comment.content %>
+    <% next if comment.parent_comment_id %>
     <li>
+      <a href='<%= comment_url(comment) %>'>Expand</a>
       <%= 
         render partial: "comments/comment", 
-        :object => comment
+        object: comment
       %>
     </li>
   <% end %>

@@ -18,6 +18,7 @@ class Comment < ApplicationRecord
     loop do
       child = comments.find_by(parent_comment_id: parent.id)
       break if child.nil?
+
       parent = child
     end
     parent
