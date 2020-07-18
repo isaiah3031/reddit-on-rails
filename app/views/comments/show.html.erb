@@ -1,35 +1,40 @@
-<ul>
+<ul class='comment-chain'>
   <li>
     <%= render partial: "comments/comment", object: @comment %>
-  </li>
-  <% parent = @comment%>
-  <% loop do %>
-    <% child = @all_comments.find do |comment| %>
-      <% comment.parent_comment_id == parent.id %>
-    <% end %>
-    <% if child %>
-      <li>
-        <%= render partial: "comments/comment", locals: {comment: child } %>
+    <% parent = @comment%>
+    <% loop_counter = 0 %>
+    <% loop do %>
+      <% loop_counter += 1 %>
+      <% child = @all_comments.find do |comment| %>
+        <% comment.parent_comment_id == parent.id %>
+      <% end %>
+      <% if child %>
+        <ul>
+          <li>
+            <%= render partial: "comments/comment", locals: {comment: child } %>
+            <% parent = child %>
+          <% else %>
+            <% break%>
+          <% end %>
+        <% end %>
+        <% loop_counter.times do %>
+        </ul>
       </li>
-      <% parent = child %>
-    <% else %>
-      <% break%>
     <% end %>
-  <% end %>
-</ul>
-<form method='post' action='<%= comments_url %>'>
-  <input 
+  </ul>
+  <form method='post' action='<%= comments_url %>'>
+    <input 
         type='hidden'
         name='authenticity_token'
         value='<%= form_authenticity_token %>'>
-  <input 
+    <input 
         type='hidden' 
         name=[comment][post_id] 
         value='<%= @comment.post_id %>'>
-  <input 
+    <input 
         type='hidden' 
         name=[comment][parent_comment_id] 
         value='<%= @comment.latest_child.id %>'>
-  <textarea id='content' name=[comment][content]></textarea>
-  <button>Create</button>
-</form>
+    <textarea id='content' name=[comment][content]></textarea>
+    <button>Create</button>
+  </form>

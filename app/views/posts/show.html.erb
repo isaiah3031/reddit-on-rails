@@ -1,28 +1,32 @@
-<%= @post.title %>
-<%= @post.author_id %>
-<%= @post.url %>
-<br>
-<%= @post.content %>
-<br>
-<a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
-<ul>
+<section class='post'>
+  <section class='post-info'>
+    <h2><a><%= @post.title %></h2>
+      <p><%= @post.author.username %></p>
+    </section>
+    <%= @post.url %>
+    <p class='post-content'><%= @post.content %></p>
+    <a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
+  </section>
+  <h3>Comments</h3>
   <% @all_comments.each do |comment| %>
     <% next if comment.parent_comment_id %>
-    <li>
-      <a href='<%= comment_url(comment) %>'>Expand</a>
-      <%= 
+    <ul class='comment-chain'>
+      <li>
+        <%= 
         render partial: "comments/comment", 
         object: comment
       %>
-    </li>
-    <% @all_comments.each do |child_comment| %>
-      <% next unless comment == child_comment.parent_comment%>
-      <li>
-        <%= 
+        <a href='<%= comment_url(comment) %>'>View comment</a>
+        <% @all_comments.each do |child_comment| %>
+          <% next unless comment == child_comment.parent_comment%>
+          <ul>
+            <li>
+              <%= 
           render partial: "comments/comment", 
           locals: {comment: child_comment}
         %>
-      </li>
+            </li>
+          <% end %>
+        </ul>
+      </ul>
     <% end %>
-  <% end %>
-</ul>

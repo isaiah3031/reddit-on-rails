@@ -21,6 +21,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 
 gem 'draper'
+gem 'font-awesome-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -59,6 +60,9 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
+    gem 'guard-livereload', '~> 2.5', require: false
+     gem 'rack-livereload'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

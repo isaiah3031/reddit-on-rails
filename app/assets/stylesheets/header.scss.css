@@ -1,0 +1,33 @@
+@import "font-awesome.css";
+header {
+  padding: 5px 10px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+header input {
+  width: 70%;
+}
+
+.fa {
+  font-size: 40px;
+}
+
+#user-options {
+  border-style: solid;
+  border-color: white;
+  border-width: thin;
+  border-radius: 15%;
+  padding: 0 5px;
+}
+#user-options:hover {
+  border-color: gray;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+}

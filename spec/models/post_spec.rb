@@ -8,4 +8,7 @@ RSpec.describe Post, type: :model do
   it { should have_many(:posts_subs) }
   it { should have_many(:subs).through(:posts_subs) }
   it { should belong_to(:author) }
+
+  describe 'Comments by parent id' do 
+  end
 end

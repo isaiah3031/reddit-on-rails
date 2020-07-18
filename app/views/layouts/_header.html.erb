@@ -1,7 +1,25 @@
+<i class="fa fa-reddit" aria-hidden="true"></i>
+<input type='text'>
+<section id='user-options'>
+  <i class="fa fa-user" aria-hidden="true"></i>
+  <i class="fa fa-caret-down" aria-hidden="true"></i>
+</section>
 <% if logged_in? %>
-  <h2>Welcome <%= current_user.username%></h2>
-  <%= link_to 'Log Out', session_url(current_user.id), method: :delete %>
+  <ul class='dropdown'>
+    <li>
+      Welcome <%= current_user.username%>
+    </li>
+    <li>
+      <%= link_to 'Log Out', session_url(current_user.id), method: :delete %>
+    </li>
+  </ul>
 <% else %>
-  <a id='login' href='<%= new_session_url %>'>Log In</a>
-  <a id='signup' href='<%= new_user_url %>'>Sign Up</a>
+  <ul class='dropdown'>
+    <li>
+      <a id='login' href='<%= new_session_url %>'>Log In</a>
+    </li>
+    <li>
+      <a id='signup' href='<%= new_user_url %>'>Sign Up</a>
+    </li>
+  </ul>
 <% end %>

@@ -1,3 +1,5 @@
-<%= comment.content %>
-<br>
-<%= comment.author.username %>
+Posted by: <%= comment.author.username %>
+<p><%= comment.content %></p>
+<section class='comment-info'>
+  Posted at: <%= comment.created_at %>
+</section>
