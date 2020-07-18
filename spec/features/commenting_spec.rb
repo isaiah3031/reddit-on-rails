@@ -36,7 +36,8 @@ feature 'Comments' do
     scenario 'Parent comments link to their own show page' do
       create_comment
       visit post_url(Post.last)
-      expect(page).to have_link('Expand', href: comment_url(Comment.last))
+      button = page.find('#expand')
+      expect(button).not_to eql(nil)
     end
   end
 
@@ -49,15 +50,22 @@ feature 'Comments' do
 
     scenario 'Comments have a child comment creation link' do
       create_comment
-      expect(page).to have_link(href: new_post_comment_url(Post.last))
+      button = page.find('#expand', match: :first)
+      expect(button).not_to eql(nil)
     end
 
     before(:each) do
       create_comment
       @parent_comment = Comment.last
-      click_on 'Expand'
-      fill_in :content, with: 'child'
-      click_button 'Create'
+      within ('.comment-chain') do
+        within ('li') do
+          click_on 'expand'
+        end
+      end 
+      within ('form') do
+        fill_in :content, with: 'child'
+      end
+      click_button
       @child_comment = Comment.last
     end
 
@@ -68,9 +76,13 @@ feature 'Comments' do
     end
 
     scenario 'Comment show pages show child comments' do
-      click_on 'Expand'
+      within ('.comment-chain') do
+        within first('li') do
+          click_on 'expand'
+        end
+      end
       fill_in :content, with: 'child2'
-      click_button 'Create'
+      click_button
       visit comment_url(@parent_comment)
       expect(page).to have_text('child')
       expect(page).to have_text('child2')

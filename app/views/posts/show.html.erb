@@ -16,7 +16,7 @@
         render partial: "comments/comment", 
         object: comment
       %>
-        <a href='<%= comment_url(comment) %>'>View comment</a>
+        <a id='expand' href='<%= comment_url(comment) %>'>View comment</a>
         <% @all_comments.each do |child_comment| %>
           <% next unless comment == child_comment.parent_comment%>
           <ul>

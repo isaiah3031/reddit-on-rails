@@ -5,7 +5,7 @@
 <% Sub.all.each do |sub| %>
   <% User.find(sub.moderator_id) %>
   <section>
-    <%= sub.title %>
+    <h3><a href='<%= sub_url(sub) %>'><%= sub.title %></a></h3>
     <br>
     <%= sub.description %>
   </section>
