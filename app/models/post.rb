@@ -10,7 +10,6 @@ class Post < ApplicationRecord
 
   def comments_by_parent_id
     all_comments = comments.includes(:author)
-    
     sorted_hash = Hash.new { |h, k| h[k] = {} }
     all_comments.each do |comment|
       sorted_hash[comment.parent_comment_id] = [
@@ -23,7 +22,11 @@ class Post < ApplicationRecord
   private
 
   def comment_hash(comment)
-    { id: comment.id, parent_comment_id: comment.parent_comment_id,
+    { 
+      id: comment.id, 
+      parent_comment_id: comment.parent_comment_id,
+      author: comment.author.username,
+      created_at: comment.created_at,
       content: comment.content }
   end
 end

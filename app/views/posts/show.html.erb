@@ -8,8 +8,7 @@
     <a href='<%= new_post_comment_url(@post) %>'>Leave a Comment</a>
   </section>
   <h3>Comments</h3>
-  <% @all_comments.each do |comment| %>
-    <% next if comment.parent_comment_id %>
+  <% @all_comments[nil].each do |comment| %>
     <ul class='comment-chain'>
       <li>
         <%= 
@@ -17,14 +16,13 @@
         object: comment
       %>
         <a id='expand' href='<%= comment_url(comment) %>'>View comment</a>
-        <% @all_comments.each do |child_comment| %>
-          <% next unless comment == child_comment.parent_comment%>
+        <% @all_comments[comment[:id]].each do |child_comment| %>
           <ul>
             <li>
               <%= 
-          render partial: "comments/comment", 
-          locals: {comment: child_comment}
-        %>
+                render partial: "comments/comment", 
+                locals: {comment: child_comment}
+              %>
             </li>
           <% end %>
         </ul>

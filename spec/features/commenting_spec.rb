@@ -15,6 +15,7 @@ feature 'Comments' do
 
     scenario 'displays parent comments belonging to them' do 
       create_comment
+      
       expect(page).to have_text(Post.last.comments.last.content)
     end
 

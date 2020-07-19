@@ -1,5 +1,5 @@
-Posted by: <%= comment.author.username %>
-<p><%= comment.content %></p>
+Posted by: <%= comment[:author] %>
+<p><%= comment[:content] %></p>
 <section class='comment-info'>
-  Posted at: <%= comment.created_at %>
+  Posted at: <%= comment[:created_at] %>
 </section>
