@@ -25,9 +25,12 @@ header input {
   border-color: gray;
 }
 
-.dropdown {
-  display: none;
+#dropdown {
   position: absolute;
   right: 0;
   top: 50px;
+}
+
+.hidden {
+  display: none;
 }
