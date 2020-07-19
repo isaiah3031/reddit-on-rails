@@ -10,5 +10,15 @@ RSpec.describe Post, type: :model do
   it { should belong_to(:author) }
 
   describe 'Comments by parent id' do 
+    it 'should return a hash where key = parent_ids and values = child_ids' do
+      Rails.application.load_seed
+      comment = Comment.last
+      
+      expect(Post.last.comments_by_parent_id[comment.parent_comment_id]).to eql(
+        [
+          { id: comment.id, parent_comment_id: comment.parent_comment_id, content: comment.content }
+        ]
+      )
+    end
   end
 end

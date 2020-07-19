@@ -69,8 +69,8 @@
 #   end
 # end
 guard :rspec, cmd: 'spring rspec' do
-  watch(%r{^app/}) { 'spec/features' }
-  watch(%r{^spec/}) { 'spec/features' }
-  watch('config/routes.rb') { 'spec/features' }
+  watch(%r{^app/}) { 'spec/models' }
+  watch(%r{^spec/}) { 'spec/models' }
+  watch('config/routes.rb') { 'spec/models' }
 end
 
